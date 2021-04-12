@@ -1,0 +1,144 @@
+body {
+    font-family: sans-serif;
+    background-color: black;
+}
+h1 {
+    margin: 1%;
+    color: #909090;
+    text-align: right;
+    display:inline;
+}
+
+h2, h3, h4, h5, h6 {
+    color: white;
+    text-align: left;
+    display: inline;
+}
+
+.main-div{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: stretch;
+  margin:auto;
+  overflow: scroll;
+}
+
+.header-div{
+  width:100%;
+  max-height: 50px;
+  display: flex;
+  margin:auto;
+  background-color: #101010;
+}
+
+.body-div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  min-width:100%;
+  margin:auto;
+}
+
+.info-div {
+  flex: 1;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.info-up-div{
+  flex: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  max-height: 400px;
+  align-items: stretch;
+}
+
+.station-info-div{
+  flex: 1;
+  flex-shrink: 1;
+  margin-top: 1px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.graph-div {
+  flex: 1;
+  flex-shrink: 1;
+  background-color: black;
+  padding: 10px;
+  min-width:50%;
+}
+
+.div-value-block{
+  padding:5px;
+}
+
+.div-user-control {
+   width: 250px;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   color: white;
+   margin-left:5%;
+ }
+
+.current-station-div {
+   min-width: 300px;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   color: #e5e5e5;
+   margin-left:5%;
+ }
+
+.search-result-div {
+    min-width: 300px;
+    max-height:60%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 5%;
+
+}
+
+.div-datetime-ctrl{
+  min-width: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: grey;
+  margin-left:5%;
+}
+
+#location-dropdown
+{
+  min-width: 100px;
+  font-size: 12px;
+  color:black;
+  height: 30px;
+  margin:1%;
+  padding-bottom:10px;
+}
+
+#date-picker
+{
+  height: 30px;
+  color: grey;
+  margin:5%;
+}
+
+#bar-selector{
+  min-width: 100px;
+  font-size: 12px;
+  height: 30px;
+  color:black;
+  margin:1%;
+}

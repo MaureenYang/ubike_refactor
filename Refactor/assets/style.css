@@ -1,0 +1,145 @@
+body {
+    font-family: sans-serif;
+    background-color: black;
+}
+h1 {
+    margin-top: 1px;
+    color: white;
+    text-align: center;
+    display:inline;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+h2, h3, h4, h5, h6 {
+    color: white;
+    text-align: left;
+    display: inline;
+}
+
+.main-div{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: stretch;
+  margin:auto;
+  overflow: scroll;
+
+}
+
+.header-div{
+  max-height: 30px;
+  display: flex;
+  margin:auto;
+}
+
+.body-div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin:auto;
+}
+
+.info-div {
+  flex: 1;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.info-up-div{
+  flex: 1;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  max-height: 400px;
+  align-items: stretch;
+}
+
+.info-down-div{
+  flex: 1;
+  flex-shrink: 1;
+  margin-top: 1px;
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+
+.graph-div {
+  flex: 1;
+  flex-shrink: 1;
+  background-color: black;
+  padding: 10px;
+}
+
+.div-value-block{
+  padding:5px;
+}
+
+.div-user-control {
+   min-width: 320px;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   color: white;
+   margin-left:5%;
+ }
+
+.current-station-div {
+   min-width: 280px;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   color: #e5e5e5;
+   margin-left:5%;
+ }
+
+.search-result-div {
+    min-width: 300px;
+    max-height:60%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 5%;
+
+}
+
+.div-datetime-ctrl{
+  min-width: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: grey;
+  margin-left:5%;
+}
+
+#location-dropdown
+{
+  height: 30px;
+  color:black;
+  margin:5%;
+  padding-left: 0px;
+}
+
+#date-picker
+{
+  height: 30px;
+  color: grey;
+  margin:5%;
+}
+
+#bar2-selector{
+  height: 30px;
+  color:black;
+  margin:5%;
+}
+
+#bar-selector{
+  width: 100px;
+  height: 50px;
+  color:black;
+  margin-top:5%;
+}
