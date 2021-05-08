@@ -22,11 +22,18 @@ class YoubikeProcessor(data_processor):
     def __init__(self):
         super().__init__()
 
-    def read(self,filename):
+    def read(self,filename,old=True):
         try:
-            json_file = open(filename)
-            dict_data = json.load(json_file)
-            json_file.close()
+            if old:
+                ubike_f = gzip.open(filename, 'r')
+                ubike_jdata = ubike_f.read()
+                ubike_f.close()
+                dict_data = json.loads(ubike_jdata.decode('utf-8'))
+            else:
+                json_file = open(filename,encoding="utf-8")
+                dict_data = json.load(json_file)
+                json_file.close()
+
 
             dict_tmp = []
             for key,value in dict_data['retVal'].items():
@@ -48,6 +55,7 @@ class YoubikeProcessor(data_processor):
             self.__data_dict__ = dict_tmp
 
         except os.error as e:
+            print(e)
             self.__data_dict__ = None
 
 

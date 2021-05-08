@@ -243,9 +243,9 @@ class backend(object):
 
 
         self.wstation1_num = len(self.wstations1)
-        self.wstation2_num=  len(self.wstations2)
+        self.wstation2_num =  len(self.wstations2)
 
-        json_file = open(self.rawpath + self.bike_raw_file)
+        json_file = open(self.rawpath + self.bike_raw_file, encoding='utf-8')
         ubike_data = json.load(json_file)
         if not self.all_station: #dict empty_df
             #generate new bike statoin class for each station

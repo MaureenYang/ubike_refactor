@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt                  # plots
 import math
 import os
 
-srcfilepath = "csvfile/source/"
+srcfilepath = "E:/csvfile/source/"
 filesinpath = os.listdir(srcfilepath)
 parsed_file = []
 counter = 0
@@ -13,6 +13,32 @@ final_df = pd.DataFrame()
 #    new_name = "data_sno_"+str(i).zfill(3)+".csv"
 #    print(new_name)
 #    parsed_file = parsed_file + [new_name]
+
+def update_uvi_category(df):
+    UVI_val_catgory = {'>30': 8, '21-30':7, '16-20':6, '11-15':5,'7-10':4, '3-6':3, '1-2':2,'<1':1,'0':0}
+    UVI_catgory = {'uvi_30': 8, 'uvi_20_30': 7, 'uvi_16_20': 6, 'uvi_11_16': 5, 'uvi_7_11': 4, 'uvi_3_7': 3, 'uvi_1_3': 2, 'uvi_1': 1, 'uvi_0': 0}
+    uvi_c = pd.Series(index = df.index,data=[None for _ in range(len(df.index))])
+    uvi_c[df.UVI > 30] = 'uvi_30'
+    idx = (df.UVI > 20) & (df.UVI <= 30)
+    uvi_c[idx] = 'uvi_20_30'
+    idx = (df.UVI > 16) & (df.UVI <= 20)
+    uvi_c[idx] = 'uvi_16_20'
+    idx = (df.UVI > 11) & (df.UVI <= 16)
+    uvi_c[idx] = 'uvi_11_16'
+    idx = (df.UVI > 7) & (df.UVI <= 11)
+    uvi_c[idx] = 'uvi_7_11'
+    idx = (df.UVI > 3) & (df.UVI <= 7)
+    uvi_c[idx] = 'uvi_3_7'
+    idx = (df.UVI > 1) & (df.UVI <= 3)
+    uvi_c[idx] = 'uvi_1_3'
+    uvi_c[df.UVI <= 1] = 'uvi_1'
+    uvi_c[df.UVI == 0] = 'uvi_0'
+
+    uvi_c = uvi_c.map(UVI_catgory)
+    #t_idx = (uvi_c.index.hour.values > 6) & (uvi_c.index.hour.values < 19)
+    #uvi_c[t_idx].replace(to_replace=0, method='ffill')
+    df.UVI = uvi_c
+    return df
 
 for f in sorted(filesinpath):
     try:
@@ -98,6 +124,13 @@ for f in sorted(filesinpath):
 
         df['holiday'] = df.index.isin(holidayidx)
 
+        df = update_uvi_category(df)
+        t_idx = (df.UVI.index.hour.values > 6) & (df.UVI.index.hour.values < 19)
+        uvi = df.UVI[t_idx].replace(to_replace=0, method='bfill')
+        print(uvi.head(24))
+        df.UVI[t_idx] = uvi
+
+        #add historical value
         for tag in ['bemp','sbi']:
 
             for i in range(1,13):
@@ -106,7 +139,7 @@ for f in sorted(filesinpath):
             for i in range(1,8):
                 df[tag+'_'+str(i)+'d'] = df[tag].shift(i*24)
 
-
+        #add predict value
         ndf = df
         ndf['predict_hour'] = 1
         for tag in ['bemp','sbi']:
@@ -118,7 +151,7 @@ for f in sorted(filesinpath):
             for tag in ['bemp','sbi']:
                 ndf2['y_' + tag] = df[tag].shift(-i)
                 #ndf2.to_csv("csvfile/parsed/" + "new_" + newfilename +"_predict_"+tag+"_"+str(i)+"h.csv")
-            ndf = ndf.append(ndf2,ignore_index=True)
+            ndf = ndf.append(ndf2, ignore_index=True)
 
         ndf = ndf.dropna()
 
@@ -142,13 +175,15 @@ for f in sorted(filesinpath):
        'sbi_7d', 'predict_hour', 'y_sbi']]
 
         #just one file
+        target_path = "E:/csvfile/parsed2/"
         #final_df  = final_df.append(ndf,ignore_index=True)
-        bemp_ndf.to_csv("csvfile/parsed/bemp/"+bemp_newfilename)
-        sbi_ndf.to_csv("csvfile/parsed/sbi/"+sbi_newfilename)
+        bemp_ndf.to_csv(target_path +"bemp/"+bemp_newfilename)
+        sbi_ndf.to_csv(target_path +"sbi/"+sbi_newfilename)
         #final_df  = final_df.append(ndf,ignore_index=True)
 
 
     except Exception as e:
         print('ERROR:',e)
+    break
 
 #final_df.to_csv("csvfile/parsed/final_predict_0301_0305.csv")

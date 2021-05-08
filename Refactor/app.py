@@ -203,7 +203,7 @@ if False: #for multiple hour
         listCoords = empty_df[datepiked]            # TODO:
 
         # No times selected, output all times for chosen month and date
-        if selectedData is None or len(selectedData) is 0:
+        if selectedData is None or len(selectedData) == 0:
             return listCoords.sum()
 
         selectnum = 0
@@ -371,9 +371,8 @@ def update_graph(datePicked,hourPicked, selectedData, selectedLocation):
                 pre_hour_sel = int(selectedData)
                 true_bemp_idx = y_data[4]
                 true_sbi_idx = y_data[5]
-                true_bemp =  true_bemp_idx[true_bemp_idx['predict_hour']==pre_hour_sel].y_bemp
-                true_sbi =  true_sbi_idx[true_sbi_idx['predict_hour']==pre_hour_sel].y_sbi
-
+                true_bemp = true_bemp_idx[true_bemp_idx['predict_hour']==pre_hour_sel].y_bemp
+                true_sbi = true_sbi_idx[true_sbi_idx['predict_hour']==pre_hour_sel].y_sbi
                 end_time = newdt + dt.timedelta(hours=12)
                 end_dt_idx = end_time.strftime("%Y-%m-%d %H:%M:%S")
                 idx = pd.date_range(start=dt_idx, end=end_dt_idx,freq='H')
@@ -442,7 +441,6 @@ def update_graph(datePicked,hourPicked, selectedData, selectedLocation):
 
         data = dfw.to_dict('rows')
         columns =  [{"name": i, "id": i,} for i in (dfw.columns)]
-        print(columns)
     except Exception as e:
         print(e)
 
@@ -457,7 +455,7 @@ def update_graph(datePicked,hourPicked, selectedData, selectedLocation):
     except Exception as e:
         print(e)
 
-    return empty_num, bike_num, total_num,station_no,station_name,station_addr,station_status,true_bemp,true_sbi,pred_bemp,pred_sbi, fig,fig2#,wtable
+    return empty_num, bike_num, total_num,station_no,station_name,station_addr,station_status,true_bemp,true_sbi,pred_bemp,pred_sbi, fig,fig2 #,wtable
 
 
 if __name__ == '__main__':

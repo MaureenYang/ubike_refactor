@@ -24,14 +24,15 @@ class YoubikeProcessor(data_processor):
 
     def read(self,filename):
         try:
-            json_file = open(filename)
+            json_file = open(filename,encoding='utf-8')
             dict_data = json.load(json_file)
             json_file.close()
 
             dict_tmp = []
             for key,value in dict_data['retVal'].items():
                 if int(value['sno']) == 988:
-                    continue;
+                    continue
+
                 try:
                     value['sno'] = int(value['sno'])
                     value['tot'] = int(value['tot'])
@@ -42,14 +43,19 @@ class YoubikeProcessor(data_processor):
                     value['act'] = int(value['act'])
                     value['mday'] = datetime.datetime.strptime(value['mday'], "%Y%m%d%H%M%S")
                     dict_tmp = dict_tmp +[value]
+
                 except Exception as e:
                     print(e)
-                    print('error: ',value)
+                    #print('error: ',value)
+
             self.__data_dict__ = dict_tmp
 
         except os.error as e:
             self.__data_dict__ = None
 
+        except Exception as e:
+            print(e)
+            self.__data_dict__ = None
 
 
     def get_dict(self):

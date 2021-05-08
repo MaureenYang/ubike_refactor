@@ -57,7 +57,7 @@ graph_div = html.Div(
         #need a option div
         dcc.Graph(
             id='histogram',
-        ),
+        )
     ]
 )
 

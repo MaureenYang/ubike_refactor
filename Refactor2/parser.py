@@ -48,7 +48,7 @@ class data_parser():
         return (coor1['x']-coor2['x'])**2+(coor1['y']-coor2['y'])**2
 
     def parsing_bike_data(self,path,insert=True):
-        self.bike_parser.read(path)
+        self.bike_parser.read(path, old=False)
         self.bdata = self.bike_parser.get_dict()
         if insert:
             for x in self.bdata:
@@ -60,16 +60,24 @@ class data_parser():
         self.weather_parser.read(path)
         self.wdata = self.weather_parser.get_dict()
         if insert:
-            for x in self.wdata:
-                idx = self.weathercol.insert_one(x)
+            if False:
+                for x in self.wdata:
+                    idx = self.weathercol.insert_one(x)
+            else:
+                idx = self.weathercol.insert_one(self.wdata)
+
         return self.wdata
 
     def parsing_weather2_data(self,path,insert=True):
         self.weather_parser2.read(path)
         self.wdata2 = self.weather_parser2.get_dict()
         if insert:
-            for x in self.wdata2:
-                idx = self.weather2col.insert_one(x)
+            if False:
+                for x in self.wdata2:
+                    idx = self.weather2col.insert_one(x)
+            else:
+                idx = self.weather2col.insert_one(self.wdata2)
+
         return self.wdata2
 
     def insert_current_data(self):
@@ -145,14 +153,17 @@ class data_parser():
             df = pd.DataFrame(newbikedata)
             df.to_csv('bike_weather.csv')
 
-    def connect2db(self):
+    def connect2db(self,old=True):
         self.dbclient = pymongo.MongoClient("mongodb://localhost:27017/")
         self.ubikedb = self.dbclient["YoubikeDB"]
-
-        self.ubikecol = self.ubikedb["new_ubike_col"]
-        self.weathercol = self.ubikedb["new_weather_col"]
-        self.weather2col = self.ubikedb["new_weather2_col"]
-        self.parsedcol = self.ubikedb["parsed_col"]
+        if old:
+            self.ubikecol = self.ubikedb["ubike_col_2018"]
+            self.weathercol = self.ubikedb["weather_col_2018"]
+            self.weather2col = self.ubikedb["weather2_col_2018"]
+        else:
+            self.ubikecol = self.ubikedb["new_ubike_col"]
+            self.weathercol = self.ubikedb["new_weather_col"]
+            self.weather2col = self.ubikedb["new_weather2_col"]
 
         return self.ubikedb
 
@@ -196,7 +207,9 @@ class data_parser():
 
         _re_df.to_csv("find_result.csv")
 
-
+bike_parse_flag = False
+weather_parse_flag = True
+weather2_parse_flag = True
 
 if __name__ == "__main__":
 
@@ -206,51 +219,64 @@ if __name__ == "__main__":
     #ubikecol = ubikedb["new_ubike_col"]
     #ubikecol = ubikedb["ubike_data_min"]
 
-    srcfilepath = "raw_data/youbike_data/"
-    filesinpath = os.listdir(srcfilepath)
+    if bike_parse_flag:
+        #srcfilepath = "E:/rawdata/2018/ubike_data/"
+        srcfilepath = "E:/rawdata/2021/youbike_data/"
+        filesinpath = os.listdir(srcfilepath)
 
+        for root, subdirs, files in os.walk(srcfilepath):
+            print('list_file_path = ' + root)
+            filesinpath = os.listdir(root)
+            for f in sorted(filesinpath):
+                try:
+                    print(root+f)
+                    p.parsing_bike_data(root +'/'+ f, True)
+                except Exception as e:
+                    print(e)
+
+    if weather_parse_flag:
+        srcfilepath = "E:/rawdata/2018/weather_json/"
+        filesinpath = os.listdir(srcfilepath)
+
+        for root, subdirs, files in os.walk(srcfilepath):
+            print('list_file_path = ' + root)
+            filesinpath = os.listdir(root)
+            for f in sorted(filesinpath):
+                try:
+                    print(root + f)
+                    p.parsing_weather_data(root + '/' + f, True)
+                except Exception as e:
+                    print(e)
+
+    if weather2_parse_flag:
+        srcfilepath = "E:/rawdata/2018/weather_json_uv/"
+        filesinpath = os.listdir(srcfilepath)
+
+        for root, subdirs, files in os.walk(srcfilepath):
+            print('list_file_path = ' + root)
+            filesinpath = os.listdir(root)
+            for f in sorted(filesinpath):
+                try:
+                    print(root + f)
+                    p.parsing_weather2_data(root + '/' + f, True)
+                except Exception as e:
+                    print(e)
     '''
-    for f in sorted(filesinpath):
-        try:
-            print(f)
-            p.parsing_bike_data(srcfilepath + f, True)
-        except Exception as e:
-            print(e)
-
-    srcfilepath = "raw_data/weather_data/"
-    filesinpath = os.listdir(srcfilepath)
-
-    for f in sorted(filesinpath):
-        try:
-            print(f)
-            p.parsing_weather_data(srcfilepath + f, True)
-        except Exception as e:
-            print(e)
-
-    srcfilepath = "raw_data/weather2_data/"
-    filesinpath = os.listdir(srcfilepath)
-    for f in sorted(filesinpath):
-        try:
-            print(f)
-            p.parsing_weather2_data(srcfilepath + f, True)
-        except Exception as e:
-            print(e)
-    '''
+    
     # get data for all stations in last 12 hours
     # input start date, how many hours, station no.
-
     '''
-    #d = ubikecol.find({'sno':1})
-    start = datetime.datetime(2018, 7, 31, 00, 00, 00)
-    tdelta = datetime.timedelta(hours=12)
-    #end = datetime.datetime(2021, 4, 1, 00, 00, 00)
-    end = start + tdelta
-    #d = ubikecol.find( {'sno': 1, 'mday': {'$lt': end, '$gte': start}}).limit(3)
-    #query = {'sno': 1, 'mday': {'$lt': end, '$gte': start},}
-    query = {'mday': {'$lt': end, '$gte': start}}
-    #query = {'sno': 1}
-    p.db_iterate_find(ubikecol,query)
-    '''
+    if False:
+        #d = ubikecol.find({'sno':1})
+        start = datetime.datetime(2018, 7, 31, 00, 00, 00)
+        tdelta = datetime.timedelta(hours=12)
+        #end = datetime.datetime(2021, 4, 1, 00, 00, 00)
+        end = start + tdelta
+        #d = ubikecol.find( {'sno': 1, 'mday': {'$lt': end, '$gte': start}}).limit(3)
+        #query = {'sno': 1, 'mday': {'$lt': end, '$gte': start},}
+        query = {'mday': {'$lt': end, '$gte': start}}
+        #query = {'sno': 1}
+        p.db_iterate_find(ubikecol,query)
 
     #for x in d:
     #    print(x)

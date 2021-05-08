@@ -1,6 +1,6 @@
 import os,sys
 import re
-srcfilepath = "csvfile/source/"
+srcfilepath = "E:/csvfile/source/"
 filesinpath = os.listdir(srcfilepath)
 
 

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt                  # plots
 import math
 import os
 
-srcfilepath = "csvfile/source/"
+srcfilepath = "D:"
 filesinpath = os.listdir(srcfilepath)
 parsed_file = []
 counter = 0
