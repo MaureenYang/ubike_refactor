@@ -4,9 +4,9 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = empty-project-type
-recent_files = ['C:\\Users\\Maureen\\.spyder-py3\\temp.py', 'Refactor3\\data_preprocessor.py']
+recent_files = ['Refactor3\\arima.py']
 
 [main]
 version = 0.2.0
-recent_files = []
+recent_files = ['Refactor3\\model_comparison.py', 'Refactor3\\model\\ridge_model.py', 'Refactor3\\model\\lasso_model.py', 'Refactor3\\model\\gb_model.py', 'Refactor3\\model\\ada_model.py', 'Refactor3\\model\\xgb_model.py', 'Refactor3\\model\\rf_model.py', 'Refactor3\\data_preprocessor.py']
 

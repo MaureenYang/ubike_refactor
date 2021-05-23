@@ -3,7 +3,7 @@ from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import Lasso
 from sklearn.metrics import mean_squared_error
-
+import math
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -43,79 +43,63 @@ def lasso(X, Y, kfold=3, feature_set=None):
     print('Base Parameters in use:')
     print(lasso.get_params())
 
-    # random search
-    '''
-    alpha = np.linspace(0.1,1,10)
-    random_grid = {'alpha': alpha}
-    lasso_random = RandomizedSearchCV(estimator=lasso, param_distributions=random_grid, scoring='neg_mean_squared_error',cv = ps2.split(), verbose=2, random_state=42, n_jobs=-1)
 
-    # Fit the random search model
-    lasso_random.fit(train_X, train_y)
-    print("random search, best parameter:",lasso_random.best_params_)
-    BestPara_random = lasso_random.best_params_
-    cv_result_rd= lasso_random.cv_results_
-    '''
     # grid search
-    alpha = np.linspace(0.1,1,10)
+
+    alpha_log = np.linspace(-8,5,14)
+
+    alpha = []
+    for i in alpha_log:
+        a = math.pow(10,i)
+        alpha = alpha + [a]
+
     grid_grid = {'alpha': alpha}
+    
+    print(grid_grid)
     lasso_grid = GridSearchCV(estimator=lasso, param_grid=grid_grid, scoring='neg_mean_squared_error', cv = ps2.split(), verbose=2, n_jobs=-1)
 
     # Fit the grid search model
     lasso_grid.fit(train_X, train_y)
     BestPara_grid = lasso_grid.best_params_
     print("grid search, best parameter:", lasso_grid.best_params_)
-    cv_results_grid = lasso_grid.cv_results_
+    #cv_results_grid = lasso_grid.cv_results_
+
+
+    lr_unit =  BestPara_grid['alpha']/10
+    alpha = [x for x in np.linspace(start = lr_unit, stop = lr_unit*99, num = 99)]
+
+    grid_grid = {'alpha': alpha}
+    lasso_grid2 = GridSearchCV(estimator=lasso, param_grid=grid_grid, scoring='neg_mean_squared_error', cv = ps2.split(), verbose=2, n_jobs=-1)
+
+    # Fit the grid search model
+    lasso_grid2.fit(train_X, train_y)
+    print("grid search, best parameter:", lasso_grid2.best_params_)
+    #cv_results_grid2 = lasso_grid2.cv_results_    
+
 
     #prediction
+    predict_y_grid2 = lasso_grid2.predict(test_X)
     predict_y_grid = lasso_grid.predict(test_X)
     predict_y_base = lasso.predict(test_X)
 
     # Performance metrics
-    errors_Grid_CV = (mean_squared_error(predict_y_grid,test_y))
-    errors_baseline = (mean_squared_error(predict_y_base,test_y))
+    errors_Grid2_CV = np.sqrt(mean_squared_error(predict_y_grid2,test_y))
+    errors_Grid_CV = np.sqrt(mean_squared_error(predict_y_grid,test_y))
+    errors_baseline = np.sqrt(mean_squared_error(predict_y_base,test_y))
 
-    results = [errors_Grid_CV,errors_baseline]
+    results = [errors_Grid2_CV, errors_Grid_CV,errors_baseline]
     print('lasso results:',results)
 
     if False:
-        fig=plt.figure(figsize=(15,8))
-        x_axis = range(3)
-
-        plt.bar(x_axis, results)
-        plt.xticks(x_axis, ('GridSearchCV','RandomizedSearchCV', 'Baseline'))
-        #plt.show()
-        plt.savefig('ridge_error_compare.png')
-
-        print('min index:',results.index(min(results)))
-
-        if results.index(min(results)) == 0:
-            model = ridge_grid
-            pred_y = predict_y_grid
-        else:
-            if results.index(min(results)) == 1:
-                model = ridge_random
-                pred_y = predict_y_random
-            else:
-                mode = ridge
-                pred_y = predict_y_base
-
         #feature importance
-        #predictors = x_train.columns
-        #coef = Series(lreg.coef_,predictors).sort_values()
-        #coef.plot(kind='bar', title='Model Coefficients, kflod:'+str(kfold))
-
-        #plt.show()
-        #plt.savefig('ridge_feature_importance.png')
-
-        fig=plt.figure(figsize=(20,8))
-        ax = fig.gca()
-        x_label = range(0,len(pred_y))
-        plt.title("kfold="+str(kfold))
-        ax.plot(x_label, pred_y, 'r--', label = "predict")
-        ax.plot(x_label, test_y, label = "ground_truth")
-        ax.set_ylim(0, 200)
-        ax.legend()
-        #plt.show()
-        plt.savefig('ridge_prediction.png')
-
-    return lasso_grid.best_estimator_
+        num_feature = len(lasso_grid2.best_estimator_.coef_)
+        plt.figure(figsize=(24,6))
+        plt.bar(range(1,num_feature*4,4), lasso_grid2.best_estimator_.coef_)
+        label_name = X.keys()
+        plt.xticks(range(1,num_feature*4,4), label_name)
+        plt.title("Lasso Feature Importances"+",kfold="+str(kfold))
+        plt.show()
+        #(lasso_grid2.best_estimator_.coef_)
+        #print(label_name)        
+        
+    return lasso_grid2, results, lasso_grid2.best_params_

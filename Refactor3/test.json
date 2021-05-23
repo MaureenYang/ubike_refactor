@@ -1,0 +1,49 @@
+
+{'name': 'Lasso Prediction ,station(1), bemp', 'results': [14.64402394439571, 14.642727887343776, 16.657686763941772], 'best_param': {'alpha': 0.009000000000000001}, 'RMSE': 14.45341254733398, 'time': 1.6505849361419678},
+{'name': 'Ridge Prediction ,station(1), bemp', 'results': [14.671561112359253, 14.671561112337235, 14.66968733621515], 'best_param': {'alpha': 1e-09}, 'RMSE': 14.522647092642293, 'time': 1.3743269443511963},
+{'name': 'Random Forest Prediction ,station(1), bemp', 'results': [14.988427463450021, 14.93877064565526, 14.93877064565526], 'best_param': {'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 100}, 'RMSE': 14.186544088085883, 'time': 115.73240995407104},
+{'name': 'Adaboost Prediction ,station(1), bemp', 'results': [21.062938927041305, 14.66133874535711, 14.65963309191431], 'best_param': {'learning_rate': 2e-05, 'loss': 'square', 'n_estimators': 160}, 'RMSE': 14.532014812027796, 'time': 78.10726261138916},
+{'name': 'XGBoostPrediction ,station(1), bemp', 'results': [15.737228206922623, 17.511072342082286, 17.467066711926005], 'best_param': {'booster': 'gblinear', 'eta': 7e-15, 'max_depth': 5, 'min_child_weight': 4, 'n_estimators': 195}, 'RMSE': 15.14045087533548, 'time': 25.439963817596436}]
+
+
+{'name': 'Lasso Prediction ,station(41), bemp', 'results': [3.632806333756934, 3.6427166852309276, 3.7178783561459796], 'best_param': {'alpha': 0.023}, 'RMSE': 3.102356903312183, 'time': 3.775970935821533},
+{'name': 'Ridge Prediction ,station(41), bemp', 'results': [3.6454646292760793, 3.6570241364591243, 3.6692705362153046], 'best_param': {'alpha': 25.0}, 'RMSE': 3.1471807968961825, 'time': 1.3275401592254639},
+{'name': 'Random Forest Prediction ,station(41), bemp', 'results': [3.613567413365161, 3.6544226550348857, 3.6544226550348857], 'best_param': {'max_depth': 5, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 120}, 'RMSE': 3.080254357763809, 'time': 92.93626880645752},
+{'name': 'Adaboost Prediction ,station(41), bemp', 'results': [3.8575090828713825, 3.769194224473697, 3.794130542019287], 'best_param': {'learning_rate': 0.1, 'loss': 'square', 'n_estimators': 45}, 'RMSE': 3.2661576858824213, 'time': 33.984416246414185},
+{'name': 'XGBoostPrediction ,station(41), bemp', 'results': [3.9013750303575883, 3.7004121800627194, 3.69936602721513], 'best_param': {'booster': 'gblinear', 'eta': 1e-20, 'max_depth': 10, 'min_child_weight': 4, 'n_estimators': 170}, 'RMSE': 3.090973900195887, 'time': 24.677696704864502},
+
+
+{'name': 'Lasso Prediction ,station(81), bemp', 'results': [4.966246221315431, 4.966246221315431, 5.181846289009628], 'best_param': {'alpha': 0.010000000000000002}, 'RMSE': 5.5611548175260666, 'time': 1.4413468837738037},
+{'name': 'Ridge Prediction ,station(81), bemp', 'results': [4.97945141882839, 4.982812581061108, 4.982812581061108], 'best_param': {'alpha': 3.4000000000000004}, 'RMSE': 5.614027784099175, 'time': 1.365391492843628},
+{'name': 'Random Forest Prediction ,station(81), bemp', 'results': [5.103276538189327, 5.065800808104964, 5.073841478197079], 'best_param': {'max_depth': 5, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 15}, 'RMSE': 6.224967491377924, 'time': 85.83951139450073},
+{'name': 'Adaboost Prediction ,station(81), bemp', 'results': [6.091656804854842, 5.257803899805116, 5.264598286297179], 'best_param': {'learning_rate': 0.01, 'loss': 'square', 'n_estimators': 15}, 'RMSE': 6.049650389670908, 'time': 29.86497473716736},
+{'name': 'XGBoostPrediction ,station(81), bemp', 'results': [5.450736475934428, 5.181333635841875, 5.176311368773119], 'best_param': {'booster': 'gblinear', 'eta': 2e-19, 'max_depth': 10, 'min_child_weight': 2, 'n_estimators': 195}, 'RMSE': 5.793556875160155, 'time': 23.678967714309692},
+
+
+{'name': 'Lasso Prediction ,station(121), bemp', 'results': [4.16713467064724, 4.169124673816825, 4.508389557355421], 'best_param': {'alpha': 0.0013000000000000002}, 'RMSE': 4.023124710030997, 'time': 1.5494658946990967},
+{'name': 'Ridge Prediction ,station(121), bemp', 'results': [4.176675105987296, 4.176675105963613, 4.174258920173405], 'best_param': {'alpha': 1e-09}, 'RMSE': 4.025338206062066, 'time': 1.3124821186065674},
+{'name': 'Random Forest Prediction ,station(121), bemp', 'results': [4.445775723918513, 4.396375836527574, 4.387959830950842], 'best_param': {'max_depth': 10, 'min_samples_leaf': 3, 'min_samples_split': 10, 'n_estimators': 195}, 'RMSE': 4.18061590931451, 'time': 129.85356760025024},
+{'name': 'Adaboost Prediction ,station(121), bemp', 'results': [5.461433703796032, 4.942130543233148, 4.970582064589287], 'best_param': {'learning_rate': 0.01, 'loss': 'square', 'n_estimators': 65}, 'RMSE': 4.676016535200177, 'time': 45.230966091156006},
+{'name': 'XGBoostPrediction ,station(121), bemp', 'results': [4.65740115638317, 4.931144216010453, 4.8664233093615366], 'best_param': {'booster': 'gblinear', 'eta': 9.000000000000001e-15, 'max_depth': 5, 'min_child_weight': 2, 'n_estimators': 190}, 'RMSE': 4.563799359587508, 'time': 23.65860104560852},
+
+
+{'name': 'Lasso Prediction ,station(161), bemp', 'results': [4.29614378466258, 4.306116070857023, 4.521881470874733], 'best_param': {'alpha': 0.0032000000000000006}, 'RMSE': 3.951534298640331, 'time': 1.5181949138641357},
+{'name': 'Ridge Prediction ,station(161), bemp', 'results': [4.3117032720559525, 4.311703272044266, 4.31059045019686], 'best_param': {'alpha': 1e-09}, 'RMSE': 3.964121399695974, 'time': 1.3826944828033447},
+{'name': 'Random Forest Prediction ,station(161), bemp', 'results': [4.365303219280613, 4.36620761782878, 4.36620761782878], 'best_param': {'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 120}, 'RMSE': 4.059738747125831, 'time': 100.50692796707153},
+{'name': 'Adaboost Prediction ,station(161), bemp', 'results': [4.99323214403157, 4.926978536494644, 4.896920467083219], 'best_param': {'learning_rate': 0.1, 'loss': 'square', 'n_estimators': 50}, 'RMSE': 4.655430005691182, 'time': 38.89718985557556},
+{'name': 'XGBoostPrediction ,station(161), bemp', 'results': [4.6864971403917375, 4.6663346521742435, 4.654428406101472], 'best_param': {'booster': 'gblinear', 'eta': 5e-19, 'max_depth': 10, 'min_child_weight': 4, 'n_estimators': 195}, 'RMSE': 4.166223137762421, 'time': 23.789161682128906},
+
+
+{'name': 'Lasso Prediction ,station(201), bemp', 'results': [3.487558331441124, 3.4915246275952483, 3.693778376015975], 'best_param': {'alpha': 0.00065}, 'RMSE': 3.1895961240475943, 'time': 1.8063673973083496},
+{'name': 'Ridge Prediction ,station(201), bemp', 'results': [3.492215103537152, 3.492295149151164, 3.4888633047313866], 'best_param': {'alpha': 0.030000000000000002}, 'RMSE': 3.1960735232149338, 'time': 1.3439066410064697},
+{'name': 'Random Forest Prediction ,station(201), bemp', 'results': [3.647725206514738, 3.563939754990737, 3.574358892406195], 'best_param': {'max_depth': 20, 'min_samples_leaf': 3, 'min_samples_split': 2, 'n_estimators': 150}, 'RMSE': 3.2642718864452074, 'time': 103.62530636787415},
+{'name': 'Adaboost Prediction ,station(201), bemp', 'results': [4.168608658355459, 4.186714758179696, 4.099733663165174], 'best_param': {'learning_rate': 0.1, 'loss': 'square', 'n_estimators': 25}, 'RMSE': 3.6376538150720004, 'time': 33.67889142036438},
+{'name': 'XGBoostPrediction ,station(201), bemp', 'results': [3.8478265439424297, 3.8211977610456938, 3.806806600765043], 'best_param': {'booster': 'gblinear', 'eta': 5e-19, 'max_depth': 10, 'min_child_weight': 4, 'n_estimators': 195}, 'RMSE': 3.3405389813566866, 'time': 23.629324674606323}]
+
+
+{'name': 'Adaboost Prediction ,station(1), bemp', 'results': [21.062938927041305, 14.66133874535711, 14.65963309191431], 'best_param': {'learning_rate': 2e-05, 'loss': 'square', 'n_estimators': 160}, 'RMSE': 14.532014812027796, 'time': 77.42133450508118}
+{'name': 'Adaboost Prediction ,station(41), bemp', 'results': [4.448072889365119, 3.681789631485548, 3.6774473231815406], 'best_param': {'learning_rate': 0.0006000000000000001, 'loss': 'square', 'n_estimators': 25}, 'RMSE': 3.198049420800768, 'time': 37.40301847457886},
+{'name': 'Adaboost Prediction ,station(81), bemp', 'results': [5.807930553759416, 4.989316978494311, 4.9897760970012115], 'best_param': {'learning_rate': 7e-06, 'loss': 'square', 'n_estimators': 85}, 'RMSE': 5.633606698625611, 'time': 52.37094330787659},
+{'name': 'Adaboost Prediction ,station(121), bemp', 'results': [6.037111098081429, 4.173291554994895, 4.183914446323979], 'best_param': {'learning_rate': 0.0009000000000000001, 'loss': 'square', 'n_estimators': 10}, 'RMSE': 4.025308936621446, 'time': 35.70535612106323},
+{'name': 'Adaboost Prediction ,station(161), bemp', 'results': [4.985194761643553, 4.312382335972694, 4.312382335972694], 'best_param': {'learning_rate': 1e-05, 'loss': 'square', 'n_estimators': 60}, 'RMSE': 3.9653398855095077, 'time': 48.293067932128906},
+{'name': 'Adaboost Prediction ,station(201), bemp', 'results': [5.341578003440105, 3.4934538676170988, 3.4934538676170988], 'best_param': {'learning_rate': 1e-07, 'loss': 'square', 'n_estimators': 160}, 'RMSE': 3.196582519700607, 'time': 79.70587038993835}]
